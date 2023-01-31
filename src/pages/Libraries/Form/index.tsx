@@ -152,7 +152,7 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
         </Container>
     </Navbar> 
     <Container className='library'> 
-    <Card className="cardForm">
+    <Card className="cardRegister">
         <div className='library-header'> 
             <h1> { libraryId ? 'Editar Biblioteca' : 'Cadastro Biblioteca' }</h1> 
         </div>  

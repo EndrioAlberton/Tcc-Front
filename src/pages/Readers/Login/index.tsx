@@ -87,7 +87,7 @@ const ReaderLogin: React.FC = () => {
             return (
                 <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
                 <Container fluid>
-                    <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#0B7A75" }}>CdB </Navbar.Brand>
+                    <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav className="me-auto my-2 my-lg-0">
@@ -97,7 +97,7 @@ const ReaderLogin: React.FC = () => {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
-            <Container className='reader'>
+            <Container className='reader-login'>
                 <Card className='cardForm'>
                     <ReaderHeader>
                         <h1>Acessar conta leitor</h1>
@@ -117,7 +117,7 @@ const ReaderLogin: React.FC = () => {
                             <Form.Group>
                                 <Form.Label>Senha</Form.Label>
                                 <Form.Control
-                                    type="text"
+                                    type="password"
                                     name="password"
                                     value={(values.password)} 
                                     onChange={handleChange} 

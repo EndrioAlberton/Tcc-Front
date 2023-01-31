@@ -20,9 +20,43 @@
     height: 100%;
     -webkit-backface-visibility: hidden; 
     backface-visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    line-height: 19.8px;
   }
 .card-footer, .card-link{
     background-color: rgb(68, 68, 68);
     transform: rotateY(180deg);
   }  
   
+::-webkit-scrollbar {
+    width: 12px;               /* width of the entire scrollbar */
+  }
+  
+::-webkit-scrollbar-track {
+    background: transparent;        /* color of the tracking area */
+  }
+  
+::-webkit-scrollbar-thumb {
+    background-color: #3d3130;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid transparent;  /* creates padding around scroll thumb */
+  }
+
+.delete:hover{
+  color: #842029!important;
+}
+.delete{ 
+  transition: all 0.4s;
+}
+
+.btn:hover{
+  opacity: 0.5;
+}
+.btn{
+  transition: all 0.4s;
+}
+
+:root {
+  background-color: #E5DCDC;
+}

@@ -46,6 +46,7 @@ export const BookFooter = styled.div `
 export const ButtonsPosition = styled.div `  
     position: relative; 
     left: 30%;
+    color: #E5DCDC;  
 `  
 
 export const Error = styled.small`

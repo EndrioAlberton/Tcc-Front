@@ -7,7 +7,7 @@ import BooksDetail from './pages/Books/Detail';
 import Libraries from './pages/Libraries';
 import LibrariesForm from './pages/Libraries/Form';  
 import LibraryLogin from './pages/Libraries/Login';    
-import ReadersForm from './pages/Readers/Form/';
+import ReadersForm from './pages/Readers/Form';
 import ReaderLogin from './pages/Readers/Login';
 import Reader from './pages/Readers';
 import Loans from './pages/Loans';

@@ -217,16 +217,16 @@ const Detail: React.FC = () => {
                                     <Card.Img variant="top" src={book.url} style={{ height: '100%', width: '70%', objectFit: 'contain' }} />
                                 </Card.Header>
                                 <Card.Body className="justify-content-center" style={{ height: '4rem', padding: '3%' }}>
-                                    <Card.Title style={{ fontSize: '1.25ren', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.title} </Card.Title>
-                                    <Card.Subtitle style={{ fontSize: '1.25ren', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.author} </Card.Subtitle>
+                                    <Card.Title style={{ fontSize: '1.25rem', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.title} </Card.Title>
+                                    <Card.Subtitle style={{ fontSize: '1.25rem', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.author} </Card.Subtitle>
                                 </Card.Body>
-                                <Card.Footer style={{ backgroundColor: "#685855", borderColor: '#24100E' }}>
-                                    <Card.Text style={{ fontSize: '1.25ren', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '8', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.description} </Card.Text>
+                                <Card.Footer style={{ backgroundColor: "#685855", borderColor: '#24100E', color:'#E5DCDC' }}>
+                                    <Card.Text style={{ fontSize: '0.8rem' }}> {book.description} </Card.Text>
                                     { isLibraryOwner? 
                                         <ButtonsPosition>   
-                                            <Button size="sm" variant="link" disabled={!book.status} onClick={() => editBook(book.id)}><BsFillPencilFill /></Button>{' '}
-                                            <Button size="sm" variant="link" disabled={!book.status} onClick={() => deleteBook(book.id)}> <BsTrashFill /> </Button>{' '}  
-                                            <Button size="sm" variant="link" onClick={() => viewBook(book.id)}> <BsBookmarkPlusFill /> </Button>{' '}  
+                                            <Button size="sm" variant="link" style={{ color: "#E5DCDC"}}  disabled={!book.status} onClick={() => editBook(book.id)}><BsFillPencilFill /></Button>{' '}
+                                            <Button size="sm" variant="link" className='delete' style={{ color: "#E5DCDC"}} disabled={!book.status} onClick={() => deleteBook(book.id)}> <BsTrashFill /> </Button>{' '}  
+                                            <Button size="sm" variant="link" style={{ color: "#E5DCDC"}}  onClick={() => viewBook(book.id)}> <BsBookmarkPlusFill /> </Button>{' '}  
 
                                         </ButtonsPosition> 
                                         : 

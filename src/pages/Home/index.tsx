@@ -29,7 +29,7 @@ const Home: React.FC = () => {
     return (   
         <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
         <Container fluid>
-            <Navbar.Brand className='nav-link' as={Link} to="/" style={{ fontSize: '160%',color: "#0B7A75" }}>CdB </Navbar.Brand>
+            <Navbar.Brand className='nav-link' as={Link} to="/" style={{ fontSize: '160%',color: "#25cac2" }}>CdB </Navbar.Brand>
         </Container>
         </Navbar> 
        <Container style={{marginTop:'4%', borderColor: '#341F1D',color: '#E5DCDC', borderRadius: '5px'}}>  
@@ -37,15 +37,15 @@ const Home: React.FC = () => {
                 <Card.Body style={{margin:'1%'}}> 
                     <Card.Title style={{ fontSize: '160%'}}> Bem vindo ao Cdb!</Card.Title>
                     <Card.Text style={{marginTop: '5%', padding:'0px 15% 0px 15%', textAlign:"start"}}>
-                        O CdB é uma aplicação com o intuito de auxiliar os biblitecários a gerenciarem suas biblitoecas, cadastrando a mesma no sistema, 
+                        O CdB é uma aplicação com o intuito de auxiliar os biblitecários a gerenciarem suas bibliotecas, cadastrando a mesma no sistema, 
                         ao acessar uma biblioteca como administrador é permitido adiconar livros, leitores ou gerar empréstimos. Já os leitores podem devem estar 
-                        registrados no sistema para serem vinculados às biblitecas, assim podendo ser alucado com empréstimo de livro. 
+                        registrados no sistema para serem vinculados às bibliotecas, assim podendo ser alucado com empréstimo de livro. 
                     </Card.Text> 
                 </Card.Body>
                 <DoubleCard>
                 <Card className='cardHover' style={{ borderRadius: '0px 10px 0px 5px', borderColor: '#341F1D'}}> 
                     <Card.Body >
-                        <Card.Title style={{ fontSize: '160%'}}>Biblitoeca</Card.Title>
+                        <Card.Title style={{ fontSize: '160%'}}>Biblioteca</Card.Title>
                         <Card.Text style={{ fontSize: '160%'}}>
                             Area para o bliotecário cadastrar ou acessar sua biblioteca. 
                             <br/>

@@ -141,7 +141,7 @@ const Reader: React.FC = () => {
     return (
         <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
             <Container fluid>
-                <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#0B7A75" }}>CdB </Navbar.Brand>
+                <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">
                     <Nav className="me-auto my-2 my-lg-0">
@@ -151,7 +151,7 @@ const Reader: React.FC = () => {
             </Container>
         </Navbar><Container className='readers'>
                 <ReaderHeader>
-                    <h1>{modeViewReaders ? 'Todos os leitores registrados ' : 'Leitores vinculados a sua bibliteca'}</h1>
+                    <h1>{modeViewReaders ? 'Todos os leitores registrados ' : 'Leitores vinculados a sua biblioteca'}</h1>
                     <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={changeModeViewReaders}> Alterar modo</Button>
                 </ReaderHeader>
                 <br />
