@@ -1,0 +1,25 @@
+.container.reader{ 
+    position: relative;
+    padding-left: 20%!important;
+    padding-right: 20%!important;
+}
+.card{  
+    padding: 2.5%; 
+    background-color: #68585541; 
+    font-size: 20px;
+}
+
+.card.cardForm, .card.cardRegister{ 
+    margin-top: 20%; 
+    padding-left: 25%!important;
+    padding-right: 25%!important;
+}
+
+.form-group{  
+    padding: 10%;
+}
+.form-control{ 
+    background-color: #E5DCDC!important; 
+    border-color: #341F1D!important;
+} 
+  

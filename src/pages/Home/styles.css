@@ -1,0 +1,9 @@
+.card .cardHover{
+    background-color: #685855!important;
+   }
+.card .cardHover:hover{
+    background-color: rgba(7, 7, 7, 0.25)!important;
+   }
+.card{  
+    padding: 0px!important;
+}
