@@ -20,5 +20,5 @@ export const Error = styled.small`
     padding: 0px 1% 0px 1%;
     margin-top: 1%; 
 
-`;
+`
 ;
