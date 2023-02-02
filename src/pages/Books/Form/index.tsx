@@ -282,7 +282,8 @@ const Books: React.FC = () => {
 
                     <Form.Group>
                         <Form.Label htmlFor="description">Descrição</Form.Label>
-                        <Form.Control 
+                        <Form.Control
+                            as="textarea" 
                             type="text"
                             name="description"
                             value={model.description} 

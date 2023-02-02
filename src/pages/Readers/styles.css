@@ -41,3 +41,13 @@
 :root {
     background-color: #E5DCDC;
 }
+.vincular{
+    background-color: transparent;
+    color:#341F1D;
+    border: 0;
+}
+.vincular:hover{
+    background-color: transparent!important;
+    color: #07750b!important;
+    border: 0;
+}

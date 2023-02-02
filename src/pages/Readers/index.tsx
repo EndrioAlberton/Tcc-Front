@@ -3,10 +3,9 @@ import { Badge, Button, Container, Modal, Table, Form, Navbar, Nav } from 'react
 import { Link, useHistory, useParams } from 'react-router-dom';
 import api from '../../shared/services/api';
 import { ReaderHeader } from './styles'; 
-import { BsPlusSquareFill } from "react-icons/bs";
+import { BsPlusLg } from "react-icons/bs";
 import "./styles.css";
 import { checkLibraryPermission } from '../../shared/services/library/checkLibraryOwner';
-import Libraries from '../Libraries';
 
 interface iReader {
     id: number;
@@ -25,7 +24,7 @@ const Reader: React.FC = () => {
  
     const history = useHistory()
     const [readers, setReaders] = useState<iReader[]>([]);
-    const [filtredReaders, setFiltredReaders] = useState<iReader[]>([]);
+    const [filteredReaders, setFilteredReaders] = useState<iReader[]>([]);
 
     const [searchReader, setSearchReader] = useState<string>('');  
     const [modeViewReaders, setModeViewReaders] = useState(false);    
@@ -58,6 +57,7 @@ const Reader: React.FC = () => {
     }
      
     useEffect(() => { 
+
         if (searchReader.length === 0) {
             loadReaders();
             return;
@@ -78,32 +78,41 @@ const Reader: React.FC = () => {
             } 
             return;
         } 
+            
+    }, [modeViewReaders,searchReader, removeReaderLibrary]);
+
+    useEffect(() => { 
 
         const redearInLibraryAsync = async () => {  
 
-            const readerInLibrary = await getSearchReaderLibrary(searchReader);
-            const idReaders = readerInLibrary.map(r => (r.id))
+            let allReaders = await getSearchReader(searchReader);
 
-            console.log(idReaders)
-    
-            let filteredReaders: iReader[] = [];
-            idReaders.forEach(idReader => {
-                readers.forEach(reader => {
-                    if(reader.id != idReader)
-                        filteredReaders.push(reader)
-                })
-            })
+            console.log("AllReaders", allReaders)
 
-            setFiltredReaders(filteredReaders)
+            let readerInLibrary = await getSearchReaderLibrary(searchReader);
+
+            console.log("readerInLibrary", readerInLibrary);
+
+            var i = allReaders.length; 
+            while (i--) {
+              for (var j of readerInLibrary ) {
+                if (allReaders[i] && allReaders[i].id === j.id) {
+                    allReaders.splice(i, 1);
+                }
+              }
+            }
+            setFilteredReaders(allReaders)
         }
         redearInLibraryAsync();
+        console.log(filteredReaders)
             
-    }, [modeViewReaders,searchReader, removeReaderLibrary]);
+    }, [modeViewReaders]);
 
     const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSearchReader(event.target.value);
     }
-     
+         
+
     const getSearchReader = async (name: string): Promise<iReader[]> => {
         const { data } = await api.get(`/notLibrary/${libraryId}/readers/search/?name=${name}`);
 
@@ -115,7 +124,6 @@ const Reader: React.FC = () => {
 
         return data;
     }  
-
      
     async function changeModeViewReaders() {
         if (modeViewReaders){  
@@ -137,7 +145,7 @@ const Reader: React.FC = () => {
     {   
         history.push("/LogarBiblioteca")
     } 
-
+    
     return (
         <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
             <Container fluid>
@@ -151,7 +159,7 @@ const Reader: React.FC = () => {
             </Container>
         </Navbar><Container className='readers'>
                 <ReaderHeader>
-                    <h1>{modeViewReaders ? 'Todos os leitores registrados ' : 'Leitores vinculados a sua biblioteca'}</h1>
+                    <h1>{!modeViewReaders ? 'Todos os leitores registrados ' : 'Leitores vinculados a sua biblioteca'}</h1>
                     <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={changeModeViewReaders}> Alterar modo</Button>
                 </ReaderHeader>
                 <br />
@@ -165,7 +173,10 @@ const Reader: React.FC = () => {
                             onChange={handleSearchChange} />
                     </Form.Group>
                 </Form>
-                <Table striped bordered hover className="text-center">
+
+                {!modeViewReaders ?
+
+                    <Table striped bordered hover className="text-center">
                     <thead>
                         <tr>
                             <th> ID </th>
@@ -174,23 +185,48 @@ const Reader: React.FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-
-                        {filtredReaders.map(reader => (
+                        {readers.map(reader => (
                             <tr key={reader.id} >  
                                 <td> {reader.id}</td>
                                 <td> {reader.nome}</td>
                                 <td> 
                                     {modeViewReaders ?
-                                        <Button size="sm" onClick={() => addReaderLibrary(reader.id)}> <BsPlusSquareFill /> </Button>
+                                        <Button size="sm" className='vincular' onClick={() => addReaderLibrary(reader.id)}> <BsPlusLg/> </Button>
                                         :
-                                        <Button size="sm" onClick={() => removeReaderLibrary(reader.id)}> Desvincular </Button>
+                                        <Button size="sm" className='desvincular' onClick={() => removeReaderLibrary(reader.id)}> Desvincular </Button>
                                     }
                                 </td>
                             </tr>
                         ))}
 
                     </tbody>
-                </Table>
+                    </Table>
+                    :
+                    <Table striped bordered hover className="text-center">
+                    <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th>Nome</th>
+                            <th>Vincular</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {filteredReaders.map(reader => (
+                            <tr key={reader.id} >  
+                                <td> {reader.id}</td>
+                                <td> {reader.nome}</td>
+                                <td> 
+                                    {modeViewReaders ?
+                                        <Button size="sm" className='vincular' onClick={() => addReaderLibrary(reader.id)}> <BsPlusLg /> </Button>
+                                        :
+                                        <Button size="sm" className='desvincular' onClick={() => removeReaderLibrary(reader.id)}> <BsPlusLg />  </Button>
+                                    }
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>                    
+                    }
             </Container></>
     );
 }

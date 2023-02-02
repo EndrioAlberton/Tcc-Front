@@ -12,14 +12,14 @@ const year_publishedInvalidLenghtMessage = "A data de publicação deve te 4 dig
 
 const requiredPublisher = "É necessário um editora";
 
-const requiredEdition = "É necessário uma Editora";
+const requiredEdition = "É necessário um número de edição";
 const valueEdition = "Edição precisa ser maior que 1";
 
 const requiredTopic = "É necessário um assunto";
 
 const requiredYear_published = "É necessário a data de publicação";
 
-const requiredDescription = "É necessário um Edition";
+const requiredDescription = "É necessário uma descrição ";
 
 const onlyNumbers = "Apenas números";
 

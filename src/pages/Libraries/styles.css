@@ -26,7 +26,7 @@
     --toastify-color-light: #fff;
     --toastify-color-dark: #121212;
     --toastify-color-info: #3498db;
-    --toastify-color-success: #07bc0c;
+    --toastify-color-success: #07750b!important;
     --toastify-color-warning: #f1c40f;
     --toastify-color-error: #842029!important;
     --toastify-color-transparent: rgba(255, 255, 255, 0.7);
@@ -58,7 +58,7 @@
       to right,
       #4cd964,
       #5ac8fa,
-      #007aff,
+      #007aff!important,
       #34aadc,
       #5856d6,
       #842029!important,
