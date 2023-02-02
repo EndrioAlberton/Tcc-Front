@@ -4,8 +4,10 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import api from '../../shared/services/api';
 import { ReaderHeader } from './styles'; 
 import { BsPlusLg } from "react-icons/bs";
+import { HiOutlineXMark } from "react-icons/hi2";
 import "./styles.css";
 import { checkLibraryPermission } from '../../shared/services/library/checkLibraryOwner';
+import { toast } from 'react-toastify';
 
 interface iReader {
     id: number;
@@ -27,14 +29,26 @@ const Reader: React.FC = () => {
     const [filteredReaders, setFilteredReaders] = useState<iReader[]>([]);
 
     const [searchReader, setSearchReader] = useState<string>('');  
-    const [modeViewReaders, setModeViewReaders] = useState(false);    
+    const [modeViewReaders, setModeViewReaders] = useState(false);  
+    const [isReaderLoan, setIsReaderLoan] = useState(true);  
 
     const { libraryId } = useParams<IParamsProps>(); 
  
     async function loadReaders() {
         if (modeViewReaders) { 
             const { data } = await api.get(`/notLibrary/${libraryId}/readers`);    
-            return setReaders(data);
+
+            let readerInLibrary = await getSearchReaderLibrary(searchReader);
+
+            var i = data.length; 
+            while (i--) {
+              for (var j of readerInLibrary ) {
+                if (data[i] && data[i].id === j.id) {
+                    data.splice(i, 1);
+                }
+              }
+            }
+            return setFilteredReaders(data);
         } if (!modeViewReaders) {  
             const { data } = await api.get(`/library/${libraryId}/readers`);  
             return setReaders(data);
@@ -49,6 +63,11 @@ const Reader: React.FC = () => {
     async function removeReaderLibrary(id: number) {   
         const stringId = String(id); 
         const { data } = await api.delete(`/library/${libraryId}/addReader/${stringId}`);   
+        if (data.message === "Leitor tem empréstimo pendente"){ 
+            toast.error("Leitor tem empréstimo pendente");
+        } if (data.message === "Leitor removido"){
+            toast.success("Leitor removido da sua biblioteca");
+        }
         loadReaders(); 
     }    
      
@@ -64,9 +83,20 @@ const Reader: React.FC = () => {
         } 
         if (searchReader.length > 0) { 
             if (modeViewReaders){ 
-                const updatedSearch = async () => {  
+                const updatedSearch = async () => { 
                     const fetchReader = await getSearchReader(searchReader);
-                    setReaders(fetchReader);  
+
+                    let readerInLibrary = await getSearchReaderLibrary(searchReader);
+
+                    var i = fetchReader.length; 
+                    while (i--) {
+                      for (var j of readerInLibrary ) {
+                        if (fetchReader[i] && fetchReader[i].id === j.id) {
+                            fetchReader.splice(i, 1);
+                        }
+                      }
+                    }                    
+                    setFilteredReaders(fetchReader);  
                 }   
                 updatedSearch();
             } if (!modeViewReaders) { 
@@ -80,33 +110,6 @@ const Reader: React.FC = () => {
         } 
             
     }, [modeViewReaders,searchReader, removeReaderLibrary]);
-
-    useEffect(() => { 
-
-        const redearInLibraryAsync = async () => {  
-
-            let allReaders = await getSearchReader(searchReader);
-
-            console.log("AllReaders", allReaders)
-
-            let readerInLibrary = await getSearchReaderLibrary(searchReader);
-
-            console.log("readerInLibrary", readerInLibrary);
-
-            var i = allReaders.length; 
-            while (i--) {
-              for (var j of readerInLibrary ) {
-                if (allReaders[i] && allReaders[i].id === j.id) {
-                    allReaders.splice(i, 1);
-                }
-              }
-            }
-            setFilteredReaders(allReaders)
-        }
-        redearInLibraryAsync();
-        console.log(filteredReaders)
-            
-    }, [modeViewReaders]);
 
     const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
         setSearchReader(event.target.value);
@@ -136,7 +139,7 @@ const Reader: React.FC = () => {
     }  
 
     function back() {
-        history.goBack()
+        history.push(`/Biblioteca/${libraryId}/Livros`)
     }
     
     const isLibraryOwner = checkLibraryPermission(libraryId);   
@@ -159,7 +162,7 @@ const Reader: React.FC = () => {
             </Container>
         </Navbar><Container className='readers'>
                 <ReaderHeader>
-                    <h1>{!modeViewReaders ? 'Todos os leitores registrados ' : 'Leitores vinculados a sua biblioteca'}</h1>
+                    <h1>{!modeViewReaders ? 'Leitores vinculados a sua biblioteca' : 'Leitores não vinculados a sua biblioteca'}</h1>
                     <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={changeModeViewReaders}> Alterar modo</Button>
                 </ReaderHeader>
                 <br />
@@ -191,9 +194,9 @@ const Reader: React.FC = () => {
                                 <td> {reader.nome}</td>
                                 <td> 
                                     {modeViewReaders ?
-                                        <Button size="sm" className='vincular' onClick={() => addReaderLibrary(reader.id)}> <BsPlusLg/> </Button>
+                                        <Button size="sm" className='link' onClick={() => addReaderLibrary(reader.id)}> <BsPlusLg/> </Button>
                                         :
-                                        <Button size="sm" className='desvincular' onClick={() => removeReaderLibrary(reader.id)}> Desvincular </Button>
+                                        <Button size="sm" className='undo' onClick={() => removeReaderLibrary(reader.id)}> <HiOutlineXMark/> </Button>
                                     }
                                 </td>
                             </tr>
@@ -217,9 +220,9 @@ const Reader: React.FC = () => {
                                 <td> {reader.nome}</td>
                                 <td> 
                                     {modeViewReaders ?
-                                        <Button size="sm" className='vincular' onClick={() => addReaderLibrary(reader.id)}> <BsPlusLg /> </Button>
+                                        <Button size="sm" className='link' onClick={() => addReaderLibrary(reader.id)}> <BsPlusLg /> </Button>
                                         :
-                                        <Button size="sm" className='desvincular' onClick={() => removeReaderLibrary(reader.id)}> <BsPlusLg />  </Button>
+                                        <Button size="sm" className='undo' onClick={() => removeReaderLibrary(reader.id)}> <HiOutlineXMark/>  </Button>
                                     }
                                 </td>
                             </tr>

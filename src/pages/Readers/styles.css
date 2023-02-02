@@ -41,13 +41,19 @@
 :root {
     background-color: #E5DCDC;
 }
-.vincular{
+.link, .undo{
     background-color: transparent;
     color:#341F1D;
     border: 0;
 }
-.vincular:hover{
+.link:hover{
     background-color: transparent!important;
     color: #07750b!important;
     border: 0;
 }
+.undo:hover{
+    background-color: transparent!important;
+    color: #842029!important;
+    border: 0;
+}
+
