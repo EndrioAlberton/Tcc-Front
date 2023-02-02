@@ -3,7 +3,7 @@ import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { Button, Card, Container, Form, Nav, Navbar } from 'react-bootstrap';
 import libraryService from "../../../shared/services/library/libraryService";
 import { useFormik, Formik } from "formik";
-import { Error } from '.././styles'
+import { ContainerReader, Error } from '.././styles'
 import { loginSchema } from '.././librariesSchema'
 import ".././styles.css";
 import { toast } from "react-toastify";
@@ -82,58 +82,55 @@ const LibraryLogin: React.FC = () => {
             const isEmailValidation = errors.email  && touched.email; 
             const isPasswordValidation = errors.password  && touched.password;
             
-            return (                
-            <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
-                <Container fluid style={{ fontSize: '160%'}}>
-                    <Navbar.Brand className='nav-link' as={Link} to="/" style={{  color: "#25cac2" }}>CdB </Navbar.Brand>
-                    <Navbar.Toggle aria-controls="navbarScroll" />
-                    <Navbar.Collapse id="navbarScroll">
-                        <Nav className="me-auto my-2 my-lg-0">
-                            <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={registerLibrary}>Nova biblioteca</Button>
-                            <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-            <Container className='library-login'>
+            return (
+                 <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+                    <Container fluid style={{ fontSize: '160%' }}>
+                        <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
+                        <Navbar.Toggle aria-controls="navbarScroll" />
+                        <Navbar.Collapse id="navbarScroll">
+                            <Nav className="me-auto my-2 my-lg-0">
+                                <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={registerLibrary}>Nova biblioteca</Button>
+                                <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button>
+                            </Nav>
+                        </Navbar.Collapse>
+                    </Container>
+                </Navbar>
+                <Container className='library-login'>
 
-                <Card className="cardForm">
-                    <div className='library-header'>
-                        <h1>Logar em biblioteca</h1>
-                    </div>
-                        <Form onSubmit={handleSubmit}>
-                            <Form.Group>
-                                <Form.Label>E-mail</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="email"
-                                    value={(values.email)} 
-                                    onChange={handleChange} 
-                                    onBlur={handleBlur}
-                                />
-                                {isEmailValidation && <Error>{errors.email}</Error>}
-                            </Form.Group>
-                            <Form.Group>
-                                <Form.Label>Senha</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    name="password"
-                                    value={(values.password)} 
-                                    onChange={handleChange} 
-                                    onBlur={handleBlur}
-                                />
-                                {isPasswordValidation && <Error>{errors.password}</Error>}
-                            </Form.Group> 
-                            <br/>
-                            <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} type="submit">
-                                Entrar
-                            </Button>
-                            <br/>
-                            <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={registerLibrary}>Nova Biblioteca</Button>
-                        </Form>
-                </Card>
-            </Container>
-            </>
+                        <Card className="cardForm">
+                            <div className='library-header'>
+                                <h1>Logar em biblioteca</h1>
+                            </div>
+                            <Form className="form" onSubmit={handleSubmit}>
+                                <Form.Group>
+                                    <Form.Label>E-mail</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        name="email"
+                                        value={(values.email)}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur} />
+                                    {isEmailValidation && <Error>{errors.email}</Error>}
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label>Senha</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        name="password"
+                                        value={(values.password)}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur} />
+                                    {isPasswordValidation && <Error>{errors.password}</Error>}
+                                </Form.Group>
+                                <br />
+                                <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} type="submit">
+                                    Entrar
+                                </Button>
+                                <br />
+                                <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={registerLibrary}>Nova Biblioteca</Button>
+                            </Form>
+                        </Card>
+                    </Container></>
             );
         } 
   

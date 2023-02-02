@@ -3,7 +3,7 @@ import { Badge, Button, Container, Table } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom';
 import api from '../../shared/services/api';
 import { checkLibraryPermission } from '../../shared/services/library/checkLibraryOwner';
-import { LoanHeader } from './styles';
+import { LoansHeader } from './styles';
 
 interface iLoan {
     id: number;    
@@ -48,9 +48,9 @@ const Loans: React.FC = () => {
 
     return (
         <Container>
-            <LoanHeader>
+            <LoansHeader>
                 <h1>Empréstimos</h1>
-            </LoanHeader> 
+            </LoansHeader> 
             <br />   
             <Table striped bordered hover className="text-center">
                 <thead>

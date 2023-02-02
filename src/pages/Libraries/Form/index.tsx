@@ -7,6 +7,7 @@ import { Formik } from 'formik';
 import { registerSchema } from '../librariesSchema';
 import { Error } from '.././styles'
 import { checkLibraryPermission } from '../../../shared/services/library/checkLibraryOwner';
+import { toast } from 'react-toastify';
 
 
 interface iLibrary {  
@@ -137,7 +138,7 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
   return (
     <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
     <Container fluid>
-        <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#0B7A75" }}>CdB </Navbar.Brand>
+        <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
                 <Nav className="me-auto my-2 my-lg-0">
@@ -178,6 +179,11 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
         ) => {
             if (libraryId !== undefined) {
                 const response = await api.put(`/libraries/${libraryId}`, model)
+                console.log(response)
+                if (response.data.message === "Senha errada"){ 
+                    toast.error("Senha incorreta");
+                    return;
+                }
             } else {
                 const response = await api.post('/libraries', model)
             }

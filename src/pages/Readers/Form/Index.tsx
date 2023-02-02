@@ -6,6 +6,7 @@ import { registerSchema } from '../readersSchema';
 import { Error, ReaderHeader } from '../styles'
 import ".././styles.css";
 import { Formik, useFormik } from 'formik';
+import { toast } from 'react-toastify';
 
 type iReader = {  
   email: string; 
@@ -152,10 +153,15 @@ return (
                     ) => {
                             if (readerId !== undefined) {
                                 const response = await api.put(`/readers/${readerId}`, values) 
+                                if (response.data.message === "Senha errada"){ 
+                                    toast.error("Senha incorreta");
+                                    return;
+                                }
+                                back()
                             } else {
                                 const response = await api.post('/readers', values)
-                            }
-                            viewLogin()
+                                viewLogin()
+                            }                 
                     }}
                     
                 >

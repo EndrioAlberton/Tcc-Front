@@ -7,6 +7,7 @@ export const LibraryHeader = styled.div `
     flex-direction: row; 
     justify-content: space-between; 
     margin-top: 2%;
+    padding: 0;
 ` 
  
 export const Title = styled.div ` 
@@ -28,4 +29,10 @@ export const Error = styled.small`
     margin-top: 1%; 
 
 `
+export const ContainerReader = styled.div`
+  width: 100vw;
+  flex-direction: column;
+  background: url("../../../public/reader.png")!important;
+  object-fit: fill;
+`;
 ;

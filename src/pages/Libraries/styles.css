@@ -69,3 +69,6 @@
     --toastify-color-progress-warning: var(--toastify-color-warning);
     --toastify-color-progress-error: var(--toastify-color-error);
   }
+.container.container-library{
+    background-image: url(../../public/reader.png) !important;
+}

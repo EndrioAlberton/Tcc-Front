@@ -2,8 +2,10 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useHistory, useParams } from 'react-router-dom' 
 import { Button, Card, Badge, Container, Form, Toast } from 'react-bootstrap';
 import api from '../../../shared/services/api'; 
- 
-import moment from 'moment';  
+import { loansSchema } from './../loansSchema'
+import { toast } from 'react-toastify';
+import { useFormik } from 'formik';
+import { Error, LoansHeader } from '../styles'
  
 interface iLoan{ 
     id: string,
@@ -45,6 +47,14 @@ const formLoan: React.FC = () => {
         id: '',
     }) 
 
+    function updatedModel (e: ChangeEvent<HTMLInputElement>) {
+
+        setModel({
+            ...model,
+            [e.target.name]: e.target.value
+        })
+    }
+
     useEffect(() => {
         findBook()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,41 +67,48 @@ const formLoan: React.FC = () => {
     async function findBook() {
         const response = await api.get(`/library/${libraryId}/book/${bookId}`)
         setBook(response.data)
-
     }  
-     
 
     async function findReader() {
         const response = await api.get(`/readers/${model.id}`)
+        if (response.data.message === "ID não corresponde a nenhum leitor") {
+            toast.error("Esse código único não corresponde a nenhum leitor do sistema.");
+            return;
+        }
         setReader(response.data.id)
     }   
      
-
-    async function onSubmit (e: ChangeEvent<HTMLFormElement>) {
-        e.preventDefault() 
+    const onSubmit = async () => {  
+        
         findReader()
-        if (!reader) {
-            setError(true);
-        } if (reader){ 
-            try {
-                const response = await api.post(`/library/${libraryId}/loan/book/${bookId}`, model)
-                console.log(response)
-                back() 
-            } catch (error) {
-                setError(true); 
-            }
+        if (reader.length === 0){
+            return;
+        } 
+        const {data} = await api.post(`/library/${libraryId}/loan/book/${bookId}`, model)
+        if (data === "Leitor não faz parte da bibliteca") {
+            toast.error("Leitor não faz parte da bibliteca.");
+            return;
         }
+        if (data === "Leitor já tem um empréstimo") {
+            toast.error("Leitor já tem um empréstimo.");
+            return;
+        }
+        back()
+    
     }
   
-    function updatedModel (e: ChangeEvent<HTMLInputElement>) {
-
-        setModel({
-            ...model,
-            [e.target.name]: e.target.value
-        })
-   
-    }  
+    const initialValues: iLoan = {
+        id: model.id,
+    }
+    
+    const {values, errors, touched, isSubmitting, handleChange, handleBlur, handleSubmit} = useFormik({
+        initialValues,
+        enableReinitialize: true,
+        validationSchema: loansSchema,
+        onSubmit
+    });  
         
+    const isId = errors.id  && touched.id;
 
     return(
             <Container>
@@ -102,32 +119,28 @@ const formLoan: React.FC = () => {
                 <Card.Body>
                     <Card.Title> Digite o código único do Leitor </Card.Title>
 
-                    <Form onSubmit={onSubmit}>
+                    <Form onSubmit={handleSubmit}>
                         <Form.Group>
                             <Form.Label>
                                 <Form.Control
                                     type="text"
                                     name="id"
-                                    value={model.id}
-                                    onChange={(e: ChangeEvent<HTMLInputElement>) => updatedModel(e)} />
-                                <br />
-                                <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} type="submit">
-                                    Salver
-                                </Button>
+                                    value={model.id}      
+                                    onChange={(handleChange) && ((e: ChangeEvent<HTMLInputElement>) => updatedModel(e))} 
+                                    onBlur={handleBlur}                               
+                                />
+                                {isId && <Error>{errors.id}</Error>}
+
                             </Form.Label>
                         </Form.Group>
+                        <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} type="submit">
+                                Enviar
+                        </Button>
                     </Form>
                 </Card.Body>
                 </Card>
                 </> 
              ))}  
-            <Toast onClose={() => setError(false)} show={error} delay={3000} autohide style={{position:"absolute"}}>
-                <Toast.Header style={{ backgroundColor: "#f5c2c7", borderColor: "#842029" , color: "#842029" }}>
-                    <strong className="me-auto" >Aviso</strong>
-                </Toast.Header>
-                <Toast.Body style={{ backgroundColor: "#f5c2c7", borderColor: "#842029", color: "#842029" }}>Houve um erro ao tentar vincular este leitor ao livro.</Toast.Body>
-            </Toast>
-            <br/> 
             <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button>
         </Container>
     );

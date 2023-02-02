@@ -8,7 +8,7 @@ interface iLibrary {
     id: number;
     nome: string;
 }
- 
+
 
 const Libraries: React.FC = () => {
 
@@ -72,8 +72,7 @@ const Libraries: React.FC = () => {
     const isLoggedReader = localStorage.getItem("loginReaderId") 
     
     return (   
-             
-        <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+            <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
             <Container fluid>
                 <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
                 { !isLoggedReader? 
@@ -87,7 +86,7 @@ const Libraries: React.FC = () => {
                 }
             </Container>
         </Navbar>
-        <Container>
+        <Container className='container-login'>
                 <LibraryHeader>
                     <h1>Bibliotecas Registradas</h1>
                 </LibraryHeader>

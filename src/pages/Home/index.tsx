@@ -35,7 +35,7 @@ const Home: React.FC = () => {
        <Container style={{marginTop:'4%', borderColor: '#341F1D',color: '#E5DCDC', borderRadius: '5px'}}>  
             <Card  style={{ fontSize: '160%' , backgroundColor: "#685855"}}> 
                 <Card.Body style={{margin:'1%'}}> 
-                    <Card.Title style={{ fontSize: '160%'}}> Bem vindo ao Cdb!</Card.Title>
+                    <Card.Title style={{ fontSize: '160%'}}> Bem vindo ao CdB!</Card.Title>
                     <Card.Text style={{marginTop: '5%', padding:'0px 15% 0px 15%', textAlign:"start"}}>
                         O CdB é uma aplicação com o intuito de auxiliar os biblitecários a gerenciarem suas bibliotecas, cadastrando a mesma no sistema, 
                         ao acessar uma biblioteca como administrador é permitido adiconar livros, leitores ou gerar empréstimos. Já os leitores podem devem estar 
