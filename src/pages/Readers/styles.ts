@@ -9,6 +9,13 @@ export const ReaderHeader = styled.div `
     margin-top: 2%;
 
 ` 
+
+export const CotainerReader = styled.div ` 
+
+    height: 100vh;
+    background-image: url(../../public/reader.jpg) !important;
+
+` 
  
 export const Error = styled.small`
     width: 100%;

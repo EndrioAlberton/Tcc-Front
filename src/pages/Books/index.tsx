@@ -9,7 +9,6 @@ import * as Photos from '../../shared/services/book/photos';
 import "./styles.css";
 import { Link } from 'react-router-dom';  
 import { checkLibraryPermission } from '../../shared/services/library/checkLibraryOwner';
-import { checkReaderPermission } from '../../shared/services/reader/checkReaderLogged';
 
 interface iBook {
     id: number;

@@ -2,21 +2,26 @@
     position: relative;
     padding-left: 20%!important;
     padding-right: 20%!important;
+    color:  #E5DCDC!important;
 }
 .container.reader-login{ 
     position:absolute; 
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%)!important;
-    padding-left: 20%!important;
-    padding-right: 20%!important;
+    padding-left: 15%!important;
+    padding-right: 15%!important;
+    color:  #E5DCDC!important;
+
 }
 .card.cardForm{
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
+        background-color: #341f1d5d!important;
 }
 .card.cardRegister{
     border-radius: 0px 0px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
+    background-color: #341f1d5d!important;
 }
 
 .card{  
@@ -53,4 +58,5 @@
     color: #842029!important;
     border: 0;
 }
+
 

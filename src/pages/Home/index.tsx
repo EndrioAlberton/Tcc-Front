@@ -43,7 +43,7 @@ const Home: React.FC = () => {
                     </Card.Text> 
                 </Card.Body>
                 <DoubleCard>
-                <Card className='cardHover' style={{ borderRadius: '0px 10px 0px 5px', borderColor: '#341F1D'}}> 
+                <Card className='cardHover' style={{ borderRadius: '0px 10px 0px 5px', borderColor: '#341F1D', height:"100%"}}> 
                     <Card.Body >
                         <Card.Title style={{ fontSize: '160%'}}>Biblioteca</Card.Title>
                         <Card.Text style={{ fontSize: '160%'}}>

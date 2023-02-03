@@ -3,7 +3,7 @@ import { Link, useHistory, useParams } from 'react-router-dom';
 import { Button, Card, Container, Form, Nav, Navbar, OverlayTrigger, Tooltip } from 'react-bootstrap';  
 import api from '../../../shared/services/api';   
 import { registerSchema } from '../readersSchema';
-import { Error, ReaderHeader } from '../styles'
+import { CotainerReader, Error, ReaderHeader } from '../styles'
 import ".././styles.css";
 import { Formik, useFormik } from 'formik';
 import { toast } from 'react-toastify';
@@ -115,7 +115,9 @@ const loginReader = () => {
 
 
 return (         
-    <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+    <>
+    <CotainerReader>
+    <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
           <Container fluid>
               <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
               <Navbar.Toggle aria-controls="navbarScroll" />
@@ -245,7 +247,9 @@ return (
                  )}
                 </Formik>
               </Card>
-          </Container> </>
+          </Container> 
+        </CotainerReader>  
+        </>
   );
  } 
   

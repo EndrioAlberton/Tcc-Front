@@ -5,7 +5,7 @@ import api from '../../../shared/services/api';
 import ".././styles.css";
 import { Formik } from 'formik';
 import { registerSchema } from '../librariesSchema';
-import { Error } from '.././styles'
+import { CotainerLibrary, Error } from '.././styles'
 import { checkLibraryPermission } from '../../../shared/services/library/checkLibraryOwner';
 import { toast } from 'react-toastify';
 
@@ -136,7 +136,9 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
   }
 
   return (
-    <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+    <>
+     <CotainerLibrary>
+    <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
     <Container fluid>
         <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -327,6 +329,7 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
                 </Formik>
             </Card>
         </Container>
+        </CotainerLibrary>
     </>
   );
  } 

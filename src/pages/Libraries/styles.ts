@@ -29,10 +29,10 @@ export const Error = styled.small`
     margin-top: 1%; 
 
 `
-export const ContainerReader = styled.div`
+export const CotainerLibrary = styled.div`
   width: 100vw;
-  flex-direction: column;
-  background: url("../../../public/reader.png")!important;
-  object-fit: fill;
-`;
+  height: 100vh;
+  background: url("../../../public/library.jpg")!important;
+
+`
 ;

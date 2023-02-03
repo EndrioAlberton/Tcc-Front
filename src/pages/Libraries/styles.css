@@ -11,9 +11,22 @@
     padding-left: 20%!important;
     padding-right: 20%!important;
 }
+
 .card{  
     background-color: #68585541; 
     font-size: 20px;
+    color:  #E5DCDC!important;
+}
+
+.card.cardRegister{
+    color:  #E5DCDC!important;
+    width: 600px;
+    height: 900px;
+    -webkit-backface-visibility: hidden; 
+    backface-visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+    line-height: 19.8px;
 }
 
 .form-control{ 
@@ -69,6 +82,3 @@
     --toastify-color-progress-warning: var(--toastify-color-warning);
     --toastify-color-progress-error: var(--toastify-color-error);
   }
-.container.container-library{
-    background-image: url(../../public/reader.png) !important;
-}

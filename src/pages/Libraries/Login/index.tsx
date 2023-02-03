@@ -3,7 +3,7 @@ import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { Button, Card, Container, Form, Nav, Navbar } from 'react-bootstrap';
 import libraryService from "../../../shared/services/library/libraryService";
 import { useFormik, Formik } from "formik";
-import { ContainerReader, Error } from '.././styles'
+import { CotainerLibrary, Error } from '.././styles'
 import { loginSchema } from '.././librariesSchema'
 import ".././styles.css";
 import { toast } from "react-toastify";
@@ -83,7 +83,9 @@ const LibraryLogin: React.FC = () => {
             const isPasswordValidation = errors.password  && touched.password;
             
             return (
-                 <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+                 <>
+                <CotainerLibrary>
+                 <Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
                     <Container fluid style={{ fontSize: '160%' }}>
                         <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -130,7 +132,9 @@ const LibraryLogin: React.FC = () => {
                                 <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={registerLibrary}>Nova Biblioteca</Button>
                             </Form>
                         </Card>
-                    </Container></>
+                    </Container>
+                </CotainerLibrary>
+                </>
             );
         } 
   
