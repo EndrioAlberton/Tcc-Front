@@ -319,11 +319,11 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
                       </OverlayTrigger>
                     : 
                         <Button variant="dark" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D"}} type="submit">
-                            Cadastrar
+                            { libraryId ? 'Salvar' : 'Cadastrar' } 
                         </Button>
                     }
                     <br/>
-                    <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={loginLibrary}> Acessar Biblioteca</Button>
+                    { libraryId ? null : ' <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={loginLibrary}> Acessar Biblioteca</Button>' } 
                 </Form>
                 )}
                 </Formik>

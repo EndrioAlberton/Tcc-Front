@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom' 
-import { Button, Card, Badge } from 'react-bootstrap';
+import { Link, useHistory, useParams } from 'react-router-dom' 
+import { Button, Card, Badge, Navbar, Nav, Container} from 'react-bootstrap';
 import api from '../../../shared/services/api'; 
  
 import moment from 'moment';  
@@ -74,58 +74,66 @@ const Books: React.FC = () => {
     const isLibraryOwner = checkLibraryPermission(libraryId);  
      
     return(
-        <div className="container">
-            <br/>
-            <div className="book-header">
-                <h1>Detalhes do livro</h1>
-            </div>
-            <br/>
+        <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+            <Container fluid>
+                <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav className="me-auto my-2 my-lg-0">
+                        <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+        <div className="detailBook">
+                <br />
+                <div className="book-header">
+                    <h1>Detalhes do livro</h1>
+                </div>
+                <br />
 
-            {book.map(b => (  
-                <Card className='text-start' key={b.id}>  
-                    <Card.Header as="h3"> { b.title } </Card.Header>                     
-                        <Card.Body> 
-                            <Card.Title> { b.author }</Card.Title>
-                            <Card.Text> 
-                            <br/>   
-                            <strong>Editora: </strong>
-                            {b.publisher} 
-                            <br/>  
-                            <strong>Edição: </strong>
-                            {b.edition} 
-                            <br/>   
-                            <strong>Assunto: </strong>
-                            {b.topic} 
-                            <br/>   
-                            <strong>Ano de Publicação: </strong>
-                            {b.year_published} 
-                            <br/>  
-                            <strong>Sinopse: </strong>
-                            {b.description} 
-                            <br/> 
-                            <strong>Status: </strong>
-                            <Badge bg= {b.status ? "success" : "warning"}>
-                                {b.status ? "Disponível" : "Emprestado"}
-                            </Badge>
-                            <br />
-                            <strong>Data de Cadastro: </strong>
-                            <Badge bg="#24100E" style={{ backgroundColor: "#24100E", borderColor: '#24100E' }}>
-                                { formateDate(b.created_at) }
-                            </Badge>  
-                            <br/>
-                            { isLibraryOwner?  
-                                        <><Button size="sm" hidden={!b.status} style={{ marginLeft: '1rem' }} variant="success" onClick={() => newLoan(b.id)}> Novo empréstimo </Button>
-                                        <Button size="sm" hidden={b.status} style={{ marginLeft: '1rem' }} variant="danger" onClick={() => removeLoan(b.id)}> Remover empréstimo </Button></> 
-                                : 
-                                null
-                            } 
+                {book.map(b => (
+                    <Card className='text-start' key={b.id} style={{ backgroundColor: "#24100E"}}>
+                        <Card.Header as="h3"> {b.title} </Card.Header>
+                        <Card.Body>
+                            <Card.Title> {b.author}</Card.Title>
+                            <Card.Text>
+                                <br />
+                                <strong>Editora: </strong>
+                                {b.publisher}
+                                <br />
+                                <strong>Edição: </strong>
+                                {b.edition}
+                                <br />
+                                <strong>Assunto: </strong>
+                                {b.topic}
+                                <br />
+                                <strong>Ano de Publicação: </strong>
+                                {b.year_published}
+                                <br />
+                                <strong>Sinopse: </strong>
+                                {b.description}
+                                <br />
+                                <strong>Status: </strong>
+                                <Badge bg={b.status ? "success" : "warning"}>
+                                    {b.status ? "Disponível" : "Emprestado"}
+                                </Badge>
+                                <br />
+                                <strong>Data de Cadastro: </strong>
+                                <Badge bg="#24100E" style={{ backgroundColor: "#24100E", borderColor: '#24100E' }}>
+                                    {formateDate(b.created_at)}
+                                </Badge>
+                                <br />
+                                {isLibraryOwner ?
+                                    <><Button size="sm" hidden={!b.status} style={{ marginLeft: '1rem' }} variant="success" onClick={() => newLoan(b.id)}> Novo empréstimo </Button>
+                                        <Button size="sm" hidden={b.status} style={{ marginLeft: '1rem' }} variant="danger" onClick={() => removeLoan(b.id)}> Remover empréstimo </Button></>
+                                    :
+                                    null}
                             </Card.Text>
-                        </Card.Body>   
+                        </Card.Body>
                     </Card>
-            ))}  
-        <br/>
-        <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}  size="sm" onClick={back}>Voltar</Button>
-        </div>
+                ))}
+            </div></>
     );
 }
 

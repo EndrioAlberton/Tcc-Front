@@ -101,7 +101,7 @@ const Libraries: React.FC = () => {
                             onChange={handleSearchChange} />
                     </Form.Group>
                 </Form>
-                <Table striped bordered hover className="text-center">
+                <Table striped bordered hover className="text-center" style={{ borderColor: "#341F1D", borderRadius: "2.5px"   }}>
                     <thead>
                         <tr>
                             <th>Nome</th>

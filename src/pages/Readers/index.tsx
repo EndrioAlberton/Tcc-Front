@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Badge, Button, Container, Modal, Table, Form, Navbar, Nav } from 'react-bootstrap';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import api from '../../shared/services/api';
-import { ReaderHeader } from './styles'; 
+import { ReadersHeader } from './styles'; 
 import { BsPlusLg } from "react-icons/bs";
 import { HiOutlineXMark } from "react-icons/hi2";
 import "./styles.css";
@@ -161,10 +161,10 @@ const Reader: React.FC = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar><Container className='readers'>
-                <ReaderHeader>
+                <ReadersHeader>
                     <h1>{!modeViewReaders ? 'Leitores vinculados a sua biblioteca' : 'Leitores não vinculados a sua biblioteca'}</h1>
                     <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={changeModeViewReaders}> Alterar modo</Button>
-                </ReaderHeader>
+                </ReadersHeader>
                 <br />
                 <Form style={{ margin: '1% 0 1% 0' }}>
                     <Form.Group>
@@ -179,7 +179,7 @@ const Reader: React.FC = () => {
 
                 {!modeViewReaders ?
 
-                    <Table striped bordered hover className="text-center">
+                    <Table striped bordered hover className="text-center" style={{ borderColor: "#341F1D", borderRadius: "2.5px"   }}>
                     <thead>
                         <tr>
                             <th> ID </th>
@@ -205,7 +205,7 @@ const Reader: React.FC = () => {
                     </tbody>
                     </Table>
                     :
-                    <Table striped bordered hover className="text-center">
+                    <Table striped bordered hover className="text-center" style={{ borderColor: "#341F1D", borderRadius: "2.5px"   }} >
                     <thead>
                         <tr>
                             <th> ID </th>

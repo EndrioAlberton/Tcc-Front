@@ -8,6 +8,7 @@ export const LibraryHeader = styled.div `
     justify-content: space-between; 
     margin-top: 2%;
     padding: 0;
+    
 ` 
  
 export const Title = styled.div ` 
@@ -30,9 +31,10 @@ export const Error = styled.small`
 
 `
 export const CotainerLibrary = styled.div`
-  width: 100vw;
+  width: auto!important;
   height: 100vh;
   background: url("../../../public/library.jpg")!important;
+  background-size: cover !important;;
 
 `
 ;

@@ -1,16 +1,17 @@
 .container.library{ 
     position: relative;
-    padding-left: 20%!important;
-    padding-right: 20%!important;
+    padding-left: 15%!important;
+    padding-right: 15%!important;
 }
 .container.library-login{ 
     position:absolute; 
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%)!important;
-    padding-left: 20%!important;
-    padding-right: 20%!important;
+    padding-left: 15%!important;
+    padding-right: 15%!important;
 }
+
 
 .card{  
     background-color: #68585541; 
@@ -20,8 +21,8 @@
 
 .card.cardRegister{
     color:  #E5DCDC!important;
-    width: 600px;
-    height: 900px;
+    width: 5500x;
+    height: 810px;
     -webkit-backface-visibility: hidden; 
     backface-visibility: hidden;
     overflow-y: auto;
@@ -31,7 +32,7 @@
 
 .form-control{ 
     background-color: #E5DCDC!important; 
-    border-color: #341F1D!important;
+    border-color: #68585541!important;
 } 
  
 :root {

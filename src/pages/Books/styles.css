@@ -56,3 +56,9 @@
 .btn{
   transition: all 0.4s;
 }
+
+.containerBook, .detailBook{ 
+  position: relative;
+  padding-left: 25%!important;
+  padding-right: 25%!important;
+}

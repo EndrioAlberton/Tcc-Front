@@ -134,7 +134,7 @@ return (
           </Container>
       </Navbar>
       <Container className='reader'>
-              <Card className="cardRegister">
+              <Card className="cardLogin">
                 <ReaderHeader>
                     <h1>{readerId ? 'Editar Leitor' : 'Cadastro Leitor'}</h1>
                 </ReaderHeader>

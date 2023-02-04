@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { useHistory, useParams } from 'react-router-dom' 
-import { Button, Card, Badge, Container, Form, Toast } from 'react-bootstrap';
+import { Link, useHistory, useParams } from 'react-router-dom' 
+import { Button, Card, Badge, Container, Form, Toast, Navbar, Nav } from 'react-bootstrap';
 import api from '../../../shared/services/api'; 
 import { loansSchema } from './../loansSchema'
 import { toast } from 'react-toastify';
@@ -111,38 +111,46 @@ const formLoan: React.FC = () => {
     const isId = errors.id  && touched.id;
 
     return(
-            <Container>
-            <h1>Novo empréstimo</h1> 
-        {book.map(b => (  
-            <><Card className='text-start' key={b.id}>
-                <Card.Header as="h3"> Nome do livro: {b.title} </Card.Header>
-                <Card.Body>
-                    <Card.Title> Digite o código único do Leitor </Card.Title>
+        <><Navbar variant="dark" expand="lg" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }}>
+            <Container fluid>
+                <Navbar.Brand className='nav-link' as={Link} to="/" style={{ color: "#25cac2" }}>CdB </Navbar.Brand>
+                <Navbar.Toggle aria-controls="navbarScroll" />
+                <Navbar.Collapse id="navbarScroll">
+                    <Nav className="me-auto my-2 my-lg-0">
+                        <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar><Container>
+                <h1>Novo empréstimo</h1>
+                {book.map(b => (
+                    <><Card className='text-start' key={b.id}>
+                        <Card.Header as="h3"> Nome do livro: {b.title} </Card.Header>
+                        <Card.Body>
+                            <Card.Title> Digite o código único do Leitor </Card.Title>
 
-                    <Form onSubmit={handleSubmit}>
-                        <Form.Group>
-                            <Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    name="id"
-                                    value={model.id}      
-                                    onChange={(handleChange) && ((e: ChangeEvent<HTMLInputElement>) => updatedModel(e))} 
-                                    onBlur={handleBlur}                               
-                                />
-                                {isId && <Error>{errors.id}</Error>}
+                            <Form onSubmit={handleSubmit}>
+                                <Form.Group>
+                                    <Form.Label>
+                                        <Form.Control
+                                            type="text"
+                                            name="id"
+                                            value={model.id}
+                                            onChange={(handleChange) && ((e: ChangeEvent<HTMLInputElement>) => updatedModel(e))}
+                                            onBlur={handleBlur} />
+                                        {isId && <Error>{errors.id}</Error>}
 
-                            </Form.Label>
-                        </Form.Group>
-                        <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} type="submit">
-                                Enviar
-                        </Button>
-                    </Form>
-                </Card.Body>
-                </Card>
-                </> 
-             ))}  
-            <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button>
-        </Container>
+                                    </Form.Label>
+                                </Form.Group>
+                                <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} type="submit">
+                                    Enviar
+                                </Button>
+                            </Form>
+                        </Card.Body>
+                    </Card>
+                    </>
+                ))}
+            </Container></>
     );
 }
 

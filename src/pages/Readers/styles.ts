@@ -5,9 +5,17 @@ export const ReaderHeader = styled.div `
     width: 100%; 
     display: flex; 
     flex-direction: row; 
+    justify-content: center; 
+    margin-top: 2%;
+` 
+
+export const ReadersHeader = styled.div ` 
+ 
+    width: 100%; 
+    display: flex; 
+    flex-direction: row; 
     justify-content: space-between; 
     margin-top: 2%;
-
 ` 
 
 export const CotainerReader = styled.div ` 

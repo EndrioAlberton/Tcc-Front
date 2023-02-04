@@ -127,7 +127,7 @@ const Books: React.FC = () => {
         </Navbar.Collapse> 
     </Container>
     </Navbar>
-    <div className="container"> 
+    <div className="containerBook"> 
         <div className='books-header'>
             <h1>{ id ? 'Editar livro' : 'Cadastrar Livro' }</h1> 
         </div>  
@@ -306,7 +306,7 @@ const Books: React.FC = () => {
                     </Form.Group>
                     <br/>    
                     <Button variant="dark" type="submit">
-                        Salvar
+                    { id ? 'Salvar' : 'Cadastrar' }
                     </Button>
                 </Form> 
                 )}

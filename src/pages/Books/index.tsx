@@ -183,7 +183,6 @@ const Detail: React.FC = () => {
                         { isLibraryOwner?
                             <> 
                                 <Button size="sm" style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={viewReaders}> Leitores </Button>
-                                <Button size='sm' style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={loadLibraryLoan}>Empréstimos</Button>
                                 <Button size='sm' style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={newBooks}>Novo livro</Button>
                                 <Button size='sm' style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={editLibraries}>Editar Biblioteca</Button>   
                             </>
@@ -215,7 +214,7 @@ const Detail: React.FC = () => {
                                 <Card.Header style={{ height: '17rem', padding: '3%' }}>
                                     <Card.Img variant="top" src={book.url} style={{ height: '100%', width: '70%', objectFit: 'contain' }} />
                                 </Card.Header>
-                                <Card.Body className="justify-content-center" style={{ height: '4rem', padding: '3%' }}>
+                                <Card.Body className="justify-content-center" style={{ height: '4rem', padding: '3%', color: "#24100E" }}>
                                     <Card.Title style={{ fontSize: '1.25rem', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.title} </Card.Title>
                                     <Card.Subtitle style={{ fontSize: '1.25rem', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.author} </Card.Subtitle>
                                 </Card.Body>

@@ -18,10 +18,12 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
         background-color: #341f1d5d!important;
 }
-.card.cardRegister{
+.card.cardLogin{
     border-radius: 0px 0px 10px 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px!important;
     background-color: #341f1d5d!important;
+    padding-left: 15%!important;
+    padding-right: 15%!important;
 }
 
 .card{  
