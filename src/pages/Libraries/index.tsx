@@ -105,6 +105,7 @@ const Libraries: React.FC = () => {
                     <thead>
                         <tr>
                             <th>Nome</th>
+                             <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
