@@ -323,7 +323,7 @@ const searchEmail = async (email: string):  Promise<iLibrary[]> => {
                         </Button>
                     }
                     <br/>
-                    { libraryId ? null : ' <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={loginLibrary}> Acessar Biblioteca</Button>' } 
+                    { libraryId ? null : <Button variant="link" style={{ color: "#E5DCDC" }} size="sm" onClick={loginLibrary}> Acessar Biblioteca</Button>} 
                 </Form>
                 )}
                 </Formik>

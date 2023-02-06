@@ -2,8 +2,9 @@ import React, { useState, useEffect, ChangeEvent, useMemo } from 'react';
 import { Container, Form, Col, Row, Badge, Button, Card, ProgressBar, Alert, Pagination, Navbar, Nav } from 'react-bootstrap';
 import { useHistory, useParams } from 'react-router-dom'
 import api from '../../shared/services/api';
-import { BookHeader, Loading, Title, ButtonsPosition, BookFooter, SubTitle} from './styles';
-import { BsFillPencilFill, BsBookmarkPlusFill, BsTrashFill, BsBack } from "react-icons/bs";
+import { BookHeader, Title, ButtonsPosition, BookFooter, SubTitle} from './styles';
+import { BsFillPencilFill, BsTrashFill  } from "react-icons/bs";
+import { BiDetail } from "react-icons/bi";
 import { Photo } from '../../shared/types/photo';
 import * as Photos from '../../shared/services/book/photos';
 import "./styles.css";
@@ -219,19 +220,19 @@ const Detail: React.FC = () => {
                                     <Card.Subtitle style={{ fontSize: '1.25rem', maxWidth: '100%', display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden' }}> {book.author} </Card.Subtitle>
                                 </Card.Body>
                                 <Card.Footer style={{ backgroundColor: "#685855", borderColor: '#24100E', color:'#E5DCDC' }}>
-                                    <Card.Text style={{ fontSize: '0.8rem' }}> {book.description} </Card.Text>
                                     { isLibraryOwner? 
                                         <ButtonsPosition>   
-                                            <Button size="sm" variant="link" style={{ color: "#E5DCDC"}}  disabled={!book.status} onClick={() => editBook(book.id)}><BsFillPencilFill /></Button>{' '}
-                                            <Button size="sm" variant="link" className='delete' style={{ color: "#E5DCDC"}} disabled={!book.status} onClick={() => deleteBook(book.id)}> <BsTrashFill /> </Button>{' '}  
-                                            <Button size="sm" variant="link" style={{ color: "#E5DCDC"}}  onClick={() => viewBook(book.id)}> <BsBookmarkPlusFill /> </Button>{' '}  
+                                            <Button size="sm" variant="link" style={{ color: "#E5DCDC", fontSize: '1rem'}}  disabled={!book.status} onClick={() => editBook(book.id)}><BsFillPencilFill /></Button>{' '}
+                                            <Button size="sm" variant="link" className='delete' style={{ color: "#E5DCDC", fontSize: '1rem' }} disabled={!book.status} onClick={() => deleteBook(book.id)}> <BsTrashFill /> </Button>{' '}  
+                                            <Button size="sm" variant="link" style={{ color: "#E5DCDC", fontSize: '1rem' }}  onClick={() => viewBook(book.id)}> <BiDetail/> </Button>{' '}  
 
                                         </ButtonsPosition> 
                                         : 
                                         <ButtonsPosition>   
-                                        <Button size="sm" variant="link" onClick={() => viewBook(book.id)}> <BsBookmarkPlusFill /> </Button>{' '}  
+                                        <Button size="sm" variant="link" style={{ color: "#E5DCDC", fontSize: '1.2rem'}}  onClick={() => viewBook(book.id)}> <BiDetail/> </Button>{' '}  
                                         </ButtonsPosition> 
                                     }
+                                    <Card.Text style={{ fontSize: '0.8rem' }}> {book.description} </Card.Text>
                                 </Card.Footer> 
                             </Card>
                         </Col>
