@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "CI=false tsc && vite build",
     "preview": "vite preview", 
-    "start": "npm run dev"
+    "start": "npm run start"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
