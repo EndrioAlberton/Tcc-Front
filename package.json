@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "CI=false tsc && vite build",
     "preview": "vite preview", 
-    "start": "npm run start"
+    "start": "npm run http-server -P http://127.0.0.1:${PORT} ./dist"
   },
   "dependencies": {
     "@hookform/resolvers": "^2.9.10",
