@@ -10,6 +10,7 @@ import { checkLibraryPermission } from '../../../shared/services/library/checkLi
 import { formBookSchema } from '../bookSchema';
 import { Error } from '.././styles'
 import { string } from 'yup/lib/locale';
+import { toast } from 'react-toastify';
 
  
 interface iBook {  
@@ -61,11 +62,11 @@ const Books: React.FC = () => {
     if (!isLibraryOwner){ 
             history.push(`/LogarBiblioteca`);
     }
-      if (id !== undefined) {
+    if (id !== undefined) {
           setImage(model.name_image);
           findBook(id) 
       } 
-      if (id === undefined) {
+    if (id === undefined) {
         setImage(model.name_image);
     } 
     }, [id])
@@ -183,10 +184,22 @@ const Books: React.FC = () => {
 
                 if (id !== undefined) {
                     const response = await api.put(`/book/${id}`, newBook)
+                    console.log(response.data.message)
+                    if (response.data.message === "Imagem"){ 
+                        toast.error("Imagem inválida");
+                        return;
+                    }
+                    toast.success("Livro editado com sucesso");
+                    back() 
                 } else {
                     const response = await api.post(`/library/${libraryId}/saveBook`, newBook)
+                    if (response.data.message === "Imagem"){ 
+                        toast.error("Imagem inválida");
+                        return;
+                    }
+                    toast.success("Livro inserido com sucesso");
+                    back() 
                 }
-                back() 
           
         }}
         

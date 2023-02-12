@@ -10,6 +10,7 @@ import * as Photos from '../../shared/services/book/photos';
 import "./styles.css";
 import { Link } from 'react-router-dom';  
 import { checkLibraryPermission } from '../../shared/services/library/checkLibraryOwner';
+import { toast } from 'react-toastify';
 
 interface iBook {
     id: number;
@@ -137,6 +138,7 @@ const Detail: React.FC = () => {
 
     async function deleteBook(id: number) {
         await api.delete(`/books/${id}`)
+        toast.success('O livro foi removido com sucesso');
         loadBooks(libraryIdNumber);
     }
 
@@ -168,6 +170,10 @@ const Detail: React.FC = () => {
      history.push(`/`)
     }
 
+    function back() {
+        history.goBack()
+    }
+    
     const indexOfLastBook = currentPage * bookPerPage;
     const indexOfFirstBook = indexOfLastBook - bookPerPage;
 
@@ -188,7 +194,9 @@ const Detail: React.FC = () => {
                                 <Button size='sm' style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={editLibraries}>Editar Biblioteca</Button>   
                             </>
                             : 
-                            <Button size='sm' style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={editReader}>Editar Leitor</Button>   
+                            <><Button size='sm' style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} onClick={editReader}>Editar Leitor</Button>
+                            <Button style={{ backgroundColor: "#341F1D", borderColor: "#341F1D" }} size="sm" onClick={back}>Voltar</Button></>
+
                         }
                         </Nav>
                 </Navbar.Collapse>
